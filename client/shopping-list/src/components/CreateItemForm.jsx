@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import createItemRequest from "../api/createItemRequest";
+import { TokenContext } from "../App";
 
 export const CreateItemForm = () => {
     const [text, setText] = useState('');
+    const { token } = useContext(TokenContext);
 
     const queryClient = useQueryClient();
 
     const { mutate: createItem } = useMutation(
-        (newItem) => createItemRequest(newItem),
+        (newItem) => createItemRequest(newItem, token),
         {
             onSettled: () => {
                 queryClient.invalidateQueries('items'); //this is how we invalidate the cache

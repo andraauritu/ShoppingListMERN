@@ -1,5 +1,6 @@
-import { API_URL, token } from './config';
-const fetchFunction = () => {
+import { API_URL } from './config';
+
+export default (token) => {
     return fetch(`${API_URL}/shoppinglist`, {
         method: 'GET',
         headers: {
@@ -9,5 +10,4 @@ const fetchFunction = () => {
     })
         .then(res => res.json())
 }
-export default fetchFunction;
 

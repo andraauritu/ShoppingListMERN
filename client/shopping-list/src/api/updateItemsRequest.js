@@ -1,5 +1,5 @@
-import { API_URL, token } from './config';
-export default function updateItemsRequest(item) {
+import { API_URL } from './config';
+export default (item, token) => {
     return fetch(`${API_URL}/shoppinglist/${item._id}`, {
         //method, headers, and body are properties of the fetch function
         //method is the HTTP method that we want to use, which is PUT

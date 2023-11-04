@@ -1,7 +1,8 @@
-import { API_URL, token } from './config';
+import { API_URL } from './config';
+
 // const Buffer = require('safe-buffer').Buffer;
 // import { Buffer } from 'safe-buffer';
-export default function createItemRequest(item) {
+export default (item, token) => {
     return fetch(`${API_URL}/shoppinglist`, {
         //method, headers, and body are properties of the fetch function
         //method is the HTTP method that we want to use, which is PUT

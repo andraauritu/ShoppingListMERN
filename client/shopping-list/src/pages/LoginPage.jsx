@@ -1,9 +1,40 @@
-import React from 'react'
+import { useContext, useState } from 'react'
 import '../App.css';
-// import '../index.css';
+import loginRequest from '../api/loginRequest';
+import { useNavigate } from 'react-router-dom';
+import { TokenContext } from '../App';
+
 
 export const LoginPage = () => {
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+    const { token, setToken } = useContext(TokenContext);
+    const navigate = useNavigate();
+    const handleLogin = (e) => {
+        e.preventDefault()
+        loginRequest(password)
+            .then(({ token }) => {
+                setToken(token)
+                navigate('/')
+            })
+            .catch((error) => {
+                setError(error.message)
+            })
+    }
+
     return (
-        <div>LoginPage</div>
+        <div>
+            <h1>Login</h1>
+            <div style={{ color: "red" }}>
+                {error}
+            </div>
+            <form onSubmit={handleLogin}>
+                <input
+                    type='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} />
+                <button>Login</button>
+            </form>
+        </div>
     )
 }

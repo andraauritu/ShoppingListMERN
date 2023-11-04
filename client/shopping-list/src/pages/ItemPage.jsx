@@ -1,16 +1,18 @@
-import React from "react";
+import { useContext } from "react";
 import { useQuery } from 'react-query'
 import ClipLoader from 'react-spinners/ClipLoader';
-
 
 import readItemsRequests from '../api/readItemsRequests';
 import { Item } from '../components/Item';
 import { CreateItemForm } from '../components/CreateItemForm';
-
+import { TokenContext } from '../App';
 
 
 export const ItemPage = () => {
-    const { isLoading, data: items } = useQuery('items', readItemsRequests);
+    const { token } = useContext(TokenContext);
+    const { isLoading, data: items } = useQuery('items', () =>
+        readItemsRequests(token)
+    );
 
     return (
         <div>
