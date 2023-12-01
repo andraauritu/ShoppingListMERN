@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../models/UserModel'); // Assuming you have a User model
 
 module.exports = async (req, res) => {
-    const { username, password } = req.body;
+    const { name, email, username, password, color } = req.body;
 
     try {
         // Check if a user with the same username already exists
@@ -12,13 +12,18 @@ module.exports = async (req, res) => {
         }
 
         // Create a new user
-        const user = new User({ username, password });
-        await user.save();
+        User.register(new User({ name, email, username, color }), password, (err, user) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'An error occurred while registering the user', err });
+            }
 
-        // Send a success response
-        res.status(200).json({ message: 'User registered successfully', user });
+            // Send a success response
+            res.status(200).json({ message: 'User registered successfully', user });
+        });
     } catch (error) {
         // Send an error response
+        console.error(error);
         res.status(500).json({ message: 'An error occurred while registering the user', error });
     }
 };

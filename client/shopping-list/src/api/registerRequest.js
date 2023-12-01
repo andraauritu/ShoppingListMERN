@@ -1,14 +1,14 @@
 //registerRequest.js
 import { API_URL } from './config';
 
-const registerRequest = async (username, password) => {
+const registerRequest = async (name, email, username, password, color) => {
     try {
         const res = await fetch(`${API_URL}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ name, email, username, password, color }),
         });
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
