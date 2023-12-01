@@ -14,7 +14,7 @@ export const Item = ({ item }) => {
     const queryClient = useQueryClient(); //this is a hook that we can use to invalidate the cache
     // and refetch the data from the server
 
-    const { mutate: updateItem } = useMutation((updatedItem) =>
+    const { mutate: updateItem } = useMutation((updatedItem, token) =>
         updateItemsRequest(updatedItem, token),
         {
             onSettled: () => {

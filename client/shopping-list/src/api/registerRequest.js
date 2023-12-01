@@ -1,8 +1,9 @@
+//registerRequest.js
 import { API_URL } from './config';
 
-const loginRequest = async (username, password) => {
+const registerRequest = async (username, password) => {
     try {
-        const res = await fetch(`${API_URL}/login`, {
+        const res = await fetch(`${API_URL}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,4 +21,4 @@ const loginRequest = async (username, password) => {
     }
 };
 
-export default loginRequest;
+export default registerRequest;

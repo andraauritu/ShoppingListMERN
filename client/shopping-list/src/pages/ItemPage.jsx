@@ -10,7 +10,8 @@ import { TokenContext } from '../App';
 
 export const ItemPage = () => {
     const { token } = useContext(TokenContext);
-    const { isLoading, data: items } = useQuery('items', () =>
+    const { isLoading, data: items } = useQuery(
+        'items', () =>
         readItemsRequests(token)
     );
 

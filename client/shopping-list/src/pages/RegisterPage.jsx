@@ -1,41 +1,35 @@
-import { useState, useContext } from 'react';
+//You need to create a registration page in your React application. This page should have a form where users can enter their username and password, and a button to submit the form. When the form is submitted, it should make a POST request to the /register endpoint with the username and password.
+
+
+// Path: client/shopping-list/src/pages/RegisterPage.jsx
+import { useState } from 'react';
 import '../App.css';
-import loginRequest from '../api/loginRequest';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { TokenContext } from '../App';
-// import { useContext } from 'react';
-export const LoginPage = () => {
+import registerRequest from '../api/registerRequest';
+
+export const RegisterPage = () => {
     const [username, setUsername] = useState(''); // Add username state
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { setToken } = useContext(TokenContext); // Add token state
 
-    const handleLogin = async (event) => {
-        console.log('handleLogin called'); // Add this line
+    const handleRegister = async (event) => {
+        console.log('handleRegister called'); // Add this line
         event.preventDefault();
 
         try {
-            console.log('Login attempted'); // Add this line
-            const response = await loginRequest(username, password);
+            console.log('Register attempted'); // Add this line
+            const response = await registerRequest(username, password);
             console.log('Full response:', response);
-            if (response.token) {
-                setToken(response.token);
-                const from = location.state?.from || '/shoppinglist';
-                navigate(from);
-            }
         } catch (error) {
             setError(error.message);
-            console.error('Login failed:', error);
+            console.error('Register failed:', error);
         }
     };
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Register</h1>
             <div style={{ color: 'red' }}>{error}</div>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleRegister}>
                 <input
                     type="text" // Change to text input for username
                     placeholder="Username" // Add a placeholder
@@ -50,7 +44,7 @@ export const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </form>
         </div>
     );
