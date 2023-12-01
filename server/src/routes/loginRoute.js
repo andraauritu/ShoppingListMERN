@@ -1,21 +1,17 @@
-const jwt = require('jsonwebtoken');
+const secretKey = process.env.SECRET_KEY;
+const express = require('express');
+const passport = require('passport');
+const jwt = require('jsonwebtoken'); // Add this line
 
-module.exports = (req, res) => {
-    console.log(req.body);
-    if (req.body.password === process.env.PASSWORD) {
-        const token = jwt.sign({
-            userId: 1,
-
-        }, process.env.SECRET_KEY);
-
-        res.json({
-            token
+module.exports = async (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) { return next(err); }
+        if (!user) { return res.status(401).json({ message: 'Authentication failed' }); }
+        req.logIn(user, (err) => {
+            if (err) { return next(err); }
+            // User is authenticated
+            const token = jwt.sign({ id: user._id }, secretKey); // Add this line
+            return res.status(200).json({ message: 'Login successful', user, token });
         });
-
-        // res.send('Login Successful');
-    }
-    else {
-        res.status(401).send('Login Failed');
-    }
-    // res.send('Hello World');
+    })(req, res, next);
 }

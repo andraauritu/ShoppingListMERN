@@ -1,10 +1,10 @@
 const express = require('express');
-const dotenv = require('dotenv');
+require('dotenv').config();
+// const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const router = require('./src/routes/router');
-dotenv.config();
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const session = require('express-session'); //this will allow us to use sessions in our app
@@ -36,7 +36,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/shoppingListMERN').then(() => {
     console.log(err);
 });
 
-
 app.use(session(sessionConfig));
 
 app.use(express.json());
@@ -45,7 +44,8 @@ app.use(morgan('tiny'));
 app.use(cors()); //this will allow all requests from all origins to access our API
 //configure the app
 
-app.use(router);
+app.use('/', router);
+
 // app.set('views', './src/views'); //this will allow us to use the views folder to render our HTML files
 // app.set('view engine', 'ejs'); //this will allow us to use ejs as our view engine
 //a view engine is a tool that allows us to use static template files in our app
@@ -60,5 +60,5 @@ passport.deserializeUser(User.deserializeUser()); //refers to how we unstore a u
 
 
 app.listen(8080, () => {
-    console.log('Server is running on port 8000');
+    console.log('Server is running on port 8080');
 });

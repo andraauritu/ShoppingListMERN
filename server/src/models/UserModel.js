@@ -11,9 +11,13 @@ const UserSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name is required']
+    },
+    color: {
+        type: String,
+        required: [true, 'Color is required']
     }
-
-});
+}
+);
 
 UserSchema.plugin(passportLocalMongoose); //this will add a username and password field to our schema
 
