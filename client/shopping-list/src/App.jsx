@@ -8,6 +8,7 @@ import FakeUserPage from './pages/FakeUserPage';
 import React, { useContext, useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar';
 // import { TokenContext } from './App'; // Add this import statement
 
 export const TokenContext = React.createContext(null); //we write export here so that we can import this context in other files
@@ -25,6 +26,7 @@ function App() {
   }, [token]);
   return (
     <div className='App'>
+      <Navbar />
       {/* this is how we pass the token and setToken to the children components */
         /* we can access the token and setToken in the children components by using useContext hook */
         //otherwise we would have to pass the token and setToken as props to the children components */

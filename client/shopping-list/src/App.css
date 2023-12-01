@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+#root .navbar {
+  max-width: none;
+  margin: 0;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
