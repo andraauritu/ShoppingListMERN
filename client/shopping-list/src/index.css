@@ -1,4 +1,18 @@
-:root {
+body {
+  margin: 0;
+  /* background: rgb(177, 191, 222); */
+  background: radial-gradient(circle, rgb(132, 179, 226) 15%, rgb(100, 160, 220) 50%, rgb(21, 99, 175) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* background-color: #525252; */
+}
+
+.navbar {
+  background-color: #ff0000;
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -75,3 +89,5 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+*/

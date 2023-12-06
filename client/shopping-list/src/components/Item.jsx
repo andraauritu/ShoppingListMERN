@@ -4,6 +4,15 @@ import updateItemsRequest from '../api/updateItemsRequest';
 import deleteItemRequest from '../api/deleteItemRequest';
 import { debounce } from 'lodash';
 import { TokenContext } from '../App';
+import TextField from '@mui/material/TextField';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
 //useMutation hook is going to return an array of two items, it is used for updating items
 
 
@@ -49,13 +58,28 @@ export const Item = ({ item }) => {
 
     return (
         <div>
-            <input checked={item.isCompleted} type="checkbox" onChange={() => updateItem({ ...item, isCompleted: !item.isCompleted })}
-            />
-            <input type="text"
+
+            <TextField
+                // className='mb-3'
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                variant='outlined'
+                margin='dense'
+                fullWidth
+                InputProps={{
+                    startAdornment: (
+                        <Checkbox checked={item.isCompleted} type="checkbox" onChange={() => updateItem({ ...item, isCompleted: !item.isCompleted })}
+                        />
+                    ),
+                    endAdornment: (
+                        <IconButton onClick={() => deleteItem(item)}>
+                            <DeleteIcon />
+                        </IconButton>
+                    )
+                }}
+                onChange={(e) => setText(e.target.value)
+                }
             />
-            <button onClick={() => deleteItem(item)}>Delete</button>
+
         </div>
     );
 };

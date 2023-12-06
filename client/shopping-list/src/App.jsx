@@ -26,7 +26,7 @@ function App() {
   }, [token]);
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar className="navbar" />
       {/* this is how we pass the token and setToken to the children components */
         /* we can access the token and setToken in the children components by using useContext hook */
         //otherwise we would have to pass the token and setToken as props to the children components */

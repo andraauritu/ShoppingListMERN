@@ -13,8 +13,14 @@ const useStyles = makeStyles({
         flexGrow: 1,
     },
     app: {
-        width: '100%'
+        width: '100%',
+        color: 'red',
     },
+    appBar: {
+        width: '100%',
+        backgroundColor: '#1563B0',
+    },
+
 
 });
 
@@ -23,7 +29,7 @@ export default function Navbar() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         SL

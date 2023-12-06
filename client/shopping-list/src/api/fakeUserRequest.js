@@ -3,8 +3,8 @@ import { API_URL } from './config';
 
 // const Buffer = require('safe-buffer').Buffer;
 // import { Buffer } from 'safe-buffer';
-export default (token) => {
-    return fetch(`${API_URL}/fakeUser`, {
+export default async (token) => {
+    const res = await fetch(`${API_URL}/fakeUser`, {
         //method, headers, and body are properties of the fetch function
         //method is the HTTP method that we want to use, which is PUT
         //headers is an object that contains the Authorization and Content-Type keys
@@ -14,6 +14,6 @@ export default (token) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json"
         }
-    })
-        .then(res => res.json())
+    });
+    return await res.json();
 }
