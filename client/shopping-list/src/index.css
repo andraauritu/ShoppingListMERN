@@ -1,7 +1,7 @@
 body {
   margin: 0;
   /* background: rgb(177, 191, 222); */
-  background: radial-gradient(circle, rgb(132, 179, 226) 15%, rgb(100, 160, 220) 50%, rgb(21, 99, 175) 100%);
+  background: radial-gradient(circle, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

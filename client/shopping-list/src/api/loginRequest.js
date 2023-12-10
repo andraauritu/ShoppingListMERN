@@ -1,23 +1,43 @@
 import { API_URL } from './config';
 
-const loginRequest = async (username, password) => {
-    try {
-        const res = await fetch(`${API_URL}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const body = await res.json();
-        console.log('Response body:', body); // Log the response body
-        return body;
-    } catch (error) {
-        console.error('There was an error!', error);
-    }
-};
-
+const loginRequest = async (id, role) => {
+    return fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            id, role
+        })
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error('Login failed')
+            }
+        })
+}
 export default loginRequest;
+
+
+/* import { API_URL } from "./config"
+ */
+/* export default (password) => {
+  return fetch(`${API_URL}/login`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+      password,
+    })
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw new Error('Login failed')
+      }
+    })
+} */

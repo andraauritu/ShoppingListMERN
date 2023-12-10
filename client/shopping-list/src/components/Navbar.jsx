@@ -32,11 +32,11 @@ export default function Navbar() {
             <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        SL
+                        RXAI
                     </Typography>
                     <Button color="inherit" component={RouterLink} to="/login">Login</Button>
-                    <Button color="inherit" component={RouterLink} to="/register">Register</Button>
-                    <Button color="inherit" component={RouterLink} to="/shoppinglist">List</Button>
+                    <Button color="inherit" component={RouterLink} to="/dashboards">Dashboards</Button>
+                    <Button color="inherit" component={RouterLink} to="/usersuggestions/:id">Suggestions</Button>
                 </Toolbar>
             </AppBar>
         </Box>
